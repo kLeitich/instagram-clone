@@ -15,6 +15,7 @@ import os
 # import django_heroku
 # import dj_database_url
 from decouple import config
+import cloudinary
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -88,7 +89,11 @@ DATABASES = {
         'PASSWORD':config('DB_PASSWORD'),
     }
 }
-
+cloudinary.config( 
+  cloud_name = "CLOUD_NAME", 
+  api_key = "API_KEY", 
+  api_secret = "API_SECRET" 
+)
 
 
 # Password validation
