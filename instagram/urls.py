@@ -19,6 +19,7 @@ import app
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(r'app',include('app.urls'))
+    path('',include('app.urls')),
+    path('accounts/', include('registration.backends.simple.urls')),
 
 ]
