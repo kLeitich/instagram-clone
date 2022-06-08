@@ -1,10 +1,10 @@
 from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
-from cloudinary import CloudinaryImage
+from cloudinary.models import CloudinaryField
 # Create your models here.
 class Image(models.Model):
-    image = CloudinaryImage('posts',null=True)
+    image = CloudinaryField('posts',null=True)
     caption = models.CharField(max_length=300,blank=True)
     date_posted = models.DateTimeField(default=datetime.now)
     name=models.CharField(max_length=100,blank=True)

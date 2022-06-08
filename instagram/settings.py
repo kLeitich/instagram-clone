@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import cloudinary
 
 from decouple import config
 # from django.shortcuts import render
@@ -89,7 +90,11 @@ DATABASES = {
         'PASSWORD':config('DB_PASSWORD'),
     }
 }
-
+cloudinary.config( 
+  cloud_name = "kleitich", 
+  api_key = "941138766173847", 
+  api_secret = "CoP5McDyC5hiDvOGZfOewtm0iT8" 
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -133,3 +138,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'welcome'
+LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = 'login'

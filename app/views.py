@@ -24,11 +24,9 @@ def register_user(request):
     context = {'form': form}
     return render(request, 'auth/register.html', context)
 
-# def login(request):
+def profile(request):
 
-#     return render(request,'auth/login.html')
+    return render(request,'profile.html')
 
-# def logout(request):
 
-#     return render('index.html')
     
