@@ -59,7 +59,18 @@
                               <li><a class="dropdown-item" href="#">Settings</a></li>
                               <li><a class="dropdown-item" href="#">Profile</a></li>
                               <li><hr class="dropdown-divider"></li>
-                              <li><a class="dropdown-item" href="#">Sign out</a></li>
+                              <li>{% if user.is_authenticated %}
+                                <div class="alert alert-success" role="alert">
+                                    <h3>Welcome {{ user.username }}!</h3>
+                                    <a href="{% url 'logout' %}">Logout?</a>
+                                </div>
+                            {% else %}
+                                <div class="alert alert-success" role="alert">
+                                    <h3>Welcome!</h3>
+                                    <a href="{% url 'register' %}">Signup</a>
+                                    <a href="{% url 'login' %}">Login</a>
+                                </div>
+                            {% endif %}</li>
                             </ul>
                     </li>
                   </ul>
