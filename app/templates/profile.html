@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 ">
+            
+            <div class="d-flex float-end" style="height: 400px;">
+                <div class="vr"></div>
+            </div>
+            
+            <img src="https://github.com/mdo.png" alt="ppic"width="300" height="300" class="rounded-circle float-end m-4 ">
+        </div> 
+        <div class="col-md-6">
+            <div class="container d-flex">
+                <p class="text-uppercase fw-bolder m-4">{{user.username}}</p> 
+                <button>EDIT PROFILE</button>
+            </div>
+
+            <div class="container d-flex m-4">
+                <p class="m-4">0 posts</p>
+                <p class="m-4">0 Followers</p>
+                <p class="m-4">0 Following</p>
+            </div>
+            <div class="container">
+                <p>{{user.first_name}} {{user.last_name}} </p>
+                <p>BIO:{{profile.bio}}</p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<hr>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 p-4">
+            <img src="https://github.com/mdo.png" alt="">
+        </div>
+        <div class="col-md-4">
+            <img src="https://github.com/mdo.png" alt="">
+        </div>
+        <div class="col-md-4">
+            <img src="https://github.com/mdo.png" alt="">
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}  
