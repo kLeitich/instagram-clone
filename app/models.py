@@ -2,6 +2,9 @@ from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 # Create your models here.
 class Image(models.Model):
     image = CloudinaryField('posts',null=True)
@@ -14,3 +17,37 @@ class Image(models.Model):
 
     def __str__(self):
         return self.image
+
+class Profile(models.Model):
+    # fname=models.CharField(max_length=30,blank=True)
+    # lname=models.CharField(max_length=30,blank=True)
+    # username=models.CharField(max_length=30,blank=True)
+    # email=models.CharField(max_length=30,blank=True)
+    profiel_pic=CloudinaryField('posts',null=True) 
+    bio=models.TextField(max_length=500, default="Bio") 
+    user=models.OneToOneField(User, on_delete=models.CASCADE,primary_key=True)
+
+    def __str__(self):
+        return f'{self.user.username} insta-profile'
+
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
+
+
+    def delete_profile(self):
+        self.delete()
+    
+    @classmethod
+    def filter_profile_by_id(cls, id):
+        profile = Profile.objects.filter(user__id = id).first()
+        return profile
+
+    @classmethod
+    def search_profile(cls, name):
+        return cls.objects.filter(user__username__icontains=name).all()

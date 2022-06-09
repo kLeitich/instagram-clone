@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from .forms import UserRegistrationForm
-
+from .models import Profile,User
 
 # Create your views here.
 def welcome(request):
@@ -25,8 +25,7 @@ def register_user(request):
     return render(request, 'auth/register.html', context)
 
 def profile(request):
-
+    
     return render(request,'profile.html')
 
 
-    
