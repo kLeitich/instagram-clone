@@ -63,8 +63,9 @@ def register_user(request):
 def profile(request):
     current_user = request.user
     user = User.objects.get(id = current_user.id)
-    profile=Profile.filter_profile_by_id(user.id) 
-    return render(request,'profile.html',{'profile':profile})
+    profile=Profile.filter_profile_by_id(user.id)
+    posts = Image.objects.filter(user = user.id)
+    return render(request,'profile.html',{'profile':profile,'posts':posts})
 
 
 def update_profile(request,id):

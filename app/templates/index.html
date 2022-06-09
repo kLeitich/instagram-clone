@@ -5,8 +5,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col"></div>
-        {% for image in posts%}
-        <div class="col-4">
+        
+        <div class="col-4">{% for image in posts%}
             <div class="img">
                 <div class="profile d-flex">
                     <img src="{{user.ppic.url }}" alt="" height="30" width="30" class="rounded-circle m-2">
@@ -19,7 +19,7 @@
                     <i class="bi bi-send fs-2"></i> 
                     <i class="bi bi-bookmark fs-2 float-end"></i> 
                     <p class="fw-bold">0 likes</p>
-                    <p>captions Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus corrupti iure a est soluta repudiandae iusto laboriosam harum accusantium sunt.</p>
+                    <p>{{image.caption}}</p>
                     <div class="form">
                         <form action="">
                             <input type="textarea" placeholder="Add a comment">
@@ -27,9 +27,9 @@
                         </form>
                     </div>
                 </div>
-            </div>
+            </div>{% endfor %}
         </div>
-        {% endfor %}
+        
         <div class="col">
             <div class="profile d-flex">
                 <img src="{{ profile.ppic.url }}" alt="" height="30" width="30" class="rounded-circle m-2">
