@@ -10,8 +10,10 @@
             <div class="d-flex float-end" style="height: 400px;">
                 <div class="vr"></div>
             </div>
+            {% if profile.ppic %}
+            <img src="{{profile.ppic.url}}" alt="ppic" width="300" height="300" class="rounded-circle float-end m-4 ">
+            {% endif %}
             
-            <img src="{{profile.ppic.url}}" alt="ppic"width="300" height="300" class="rounded-circle float-end m-4 ">
         </div> 
         <div class="col-md-6">
             <div class="container d-flex">

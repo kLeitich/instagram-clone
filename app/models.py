@@ -67,3 +67,10 @@ class Profile(models.Model):
     @classmethod
     def search_profile(cls, name):
         return cls.objects.filter(user__username__icontains=name).all()
+
+class Follow(models.Model):
+    following = models.ForeignKey(User, on_delete=models.CASCADE)
+    followers = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.followers} follows'
