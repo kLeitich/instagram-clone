@@ -14,6 +14,7 @@ urlpatterns=[
     path('dm',views.dm,name='dm'),
     path('image_upload',views.image_upload,name='image_upload'),
     path('explore',views.explore,name='explore'),
+    path('notification',views.notification,name='notification'),
 ]   
 
 if settings.DEBUG:

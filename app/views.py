@@ -19,6 +19,9 @@ def image_upload(request):
 def explore(request):
     return render(request,'explore.html')
 
+def notification(request):
+    return render(request,'notification.html')
+
 def register_user(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
