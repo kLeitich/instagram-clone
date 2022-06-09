@@ -10,6 +10,9 @@ from .models import Profile,User
 def welcome(request):
     return render(request,'index.html')
 
+def dm(request):
+    return render(request,'dm.html')
+
 def register_user(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)

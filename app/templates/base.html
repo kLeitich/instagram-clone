@@ -25,27 +25,27 @@
             <div class="">
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li>
-                        <a href="#" class="nav-link px-2 link-secondary">
+                        <a href="/" class="nav-link px-2 link-secondary">
                             <i class="bi bi-house-door-fill"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-2 link-dark">
+                        <a href="{% url 'dm' %}" class="nav-link px-2 link-dark">
                             <i class="bi bi-messenger"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-2 link-dark">
+                        <a href="{% url 'image_upload' %}" class="nav-link px-2 link-dark">
                             <i class="bi bi-file-plus"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-2 link-dark">
+                        <a href="{% url 'explore' %}" class="nav-link px-2 link-dark">
                             <i class="bi bi-compass"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-2 link-dark">
+                        <a href="{% url 'notification' %}" class="nav-link px-2 link-dark">
                             <i class="bi bi-heart"></i>
                         </a>
                     </li>
@@ -55,7 +55,7 @@
                               <img src="https://github.com/mdo.png" alt="mdo" width="22" height="22" class="rounded-circle">
                             </a>
                             <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                              <li><a class="dropdown-item" href="#">New project...</a></li>
+                              <li><a class="dropdown-item" href="{% url 'update_profile' user.id %}">Update Profile</a></li>
                               <li><a class="dropdown-item" href="#">Settings</a></li>
                               <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
                               <li><hr class="dropdown-divider"></li>
