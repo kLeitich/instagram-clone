@@ -8,7 +8,10 @@ from .models import Profile,User
 
 # Create your views here.
 def welcome(request):
-    return render(request,'index.html')
+    current_user = request.user
+    user = User.objects.get(id = current_user.id)
+    profile=Profile.filter_profile_by_id(user.id)
+    return render(request,'index.html',{'profile':profile})
 
 def dm(request):
     return render(request,'dm.html')
@@ -40,7 +43,6 @@ def profile(request):
     current_user = request.user
     user = User.objects.get(id = current_user.id)
     profile=Profile.filter_profile_by_id(user.id) 
-    print(profile)
     return render(request,'profile.html',{'profile':profile})
 
 
