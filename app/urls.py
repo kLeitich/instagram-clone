@@ -12,6 +12,8 @@ urlpatterns=[
     path('profile',views.profile,name='profile'),
     path('update_profile/<int:id>',views.update_profile,name='update_profile'),
     path('dm',views.dm,name='dm'),
+    path('image_upload',views.image_upload,name='image_upload'),
+    path('explore',views.explore,name='explore'),
 ]   
 
 if settings.DEBUG:

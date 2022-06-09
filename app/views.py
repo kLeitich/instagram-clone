@@ -13,6 +13,12 @@ def welcome(request):
 def dm(request):
     return render(request,'dm.html')
 
+def image_upload(request):
+    return render(request,'image_upload.html')
+
+def explore(request):
+    return render(request,'explore.html')
+
 def register_user(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
