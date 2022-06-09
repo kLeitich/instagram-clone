@@ -15,6 +15,9 @@ urlpatterns=[
     path('image_upload',views.image_upload,name='image_upload'),
     path('explore',views.explore,name='explore'),
     path('notification',views.notification,name='notification'),
+    path('p_user/<str:username>/',views.user_profile, name='u_profile'),
+    path('follow/<int:id>/',views.follow, name='follow'),
+    path('unfollow/<int:id>/',views.unfollow, name='unfollow'),
 ]   
 
 if settings.DEBUG:

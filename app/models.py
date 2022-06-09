@@ -69,8 +69,16 @@ class Profile(models.Model):
         return cls.objects.filter(user__username__icontains=name).all()
 
 class Follow(models.Model):
-    following = models.ForeignKey(User, on_delete=models.CASCADE)
-    followers = models.ForeignKey(User, on_delete=models.CASCADE)
+    follower = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='following',null=True)
+    followed = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='followers',null=True)
 
     def __str__(self):
-        return f'{self.followers} follows'
+        return f'{self.follower} Follow'
+           
+
+            
+    def save_follow(self):
+        self.save()
+
+    def delete_follow(self):
+        self.delete()

@@ -1,10 +1,10 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404, render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from .forms import UploadImageModelForm, UserRegistrationForm,UpdateUserProfileForm
-from .models import Profile,User,Image
+from .models import Profile,User,Image,Follow
 
 # Create your views here.
 def welcome(request):
@@ -81,3 +81,39 @@ def update_profile(request,id):
     else:        
         form = UpdateUserProfileForm(instance=profile)
     return render(request, 'update_profile.html', {'form':form})
+
+def follow(request,id):
+    if request.method == 'GET':
+        user_follow=User.objects.get(pk=id)
+        follow_user=Follow(follower=request.user, followed=user_follow)
+        follow_user.save()
+        return redirect('user_profile' ,username=user_follow.username)
+    
+def unfollow(request,id):
+    if request.method=='GET':
+        user_unfollow=User.objects.get(pk=id)
+        unfollow_user=Follow.objects.filter(follower=request.user,followed=user_unfollow)
+        unfollow_user.delete()
+        return redirect('user_profile' ,username=user_unfollow.username)
+
+def user_profile(request, username):
+    user_prof = get_object_or_404(User, username=username)
+    if request.user == user_prof:
+        return redirect('profile', user_id=request.user.id)
+    user_posts = user_prof.profile.posts.all()
+    followers = Follow.objects.filter(followed=user_prof.profile)
+    follow_status = None
+    for follower in followers:
+        if request.user.profile == follower.follower:
+            follow_status = True
+        else:
+            follow_status = False
+
+    context ={
+        'user_prof': user_prof,
+        'user_posts': user_posts,
+        'followers': followers,
+        'follow_status': follow_status
+         }
+    
+    return render(request, 'user_profile.html', context)
