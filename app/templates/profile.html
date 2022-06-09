@@ -11,12 +11,12 @@
                 <div class="vr"></div>
             </div>
             
-            <img src="https://github.com/mdo.png" alt="ppic"width="300" height="300" class="rounded-circle float-end m-4 ">
+            <img src="{{profile.ppic.url}}" alt="ppic"width="300" height="300" class="rounded-circle float-end m-4 ">
         </div> 
         <div class="col-md-6">
             <div class="container d-flex">
                 <p class="text-uppercase fw-bolder m-4">{{user.username}}</p> 
-                <button>EDIT PROFILE</button>
+                <a href="{% url 'update_profile' user.id %}" class="m-3"><button class="btn btn-outline-primary fs-6">EDIT PROFILE</button></a>
             </div>
 
             <div class="container d-flex m-4">

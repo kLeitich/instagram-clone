@@ -19,7 +19,7 @@ from django.dispatch import receiver
 #         return self.image
 
 class Profile(models.Model):
-    ppic=models.ImageField(upload_to ='media/ppic') 
+    ppic=models.ImageField(upload_to ='ppic') 
     bio=models.TextField(max_length=600, default="Bio")
     user=models.OneToOneField(User, on_delete=models.CASCADE,primary_key=True)
 
