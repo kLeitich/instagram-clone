@@ -7,10 +7,9 @@ from django.dispatch import receiver
 
 # Create your models here.
 class Image(models.Model):
-    image = models.ImageField(upload_to = 'postimage')
+    image = models.ImageField(upload_to ='postimage')
     caption = models.CharField(max_length=300,blank=True)
     date_posted = models.DateTimeField(auto_now_add=True,blank=True)
-    name=models.CharField(max_length=100,blank=True)
     likes=models.ManyToManyField(User,related_name='likes',blank=True)
     user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='post_image')
     

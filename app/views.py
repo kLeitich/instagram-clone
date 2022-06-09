@@ -3,21 +3,42 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
-from .forms import UserRegistrationForm,UpdateUserProfileForm
-from .models import Profile,User
+from .forms import UploadImageModelForm, UserRegistrationForm,UpdateUserProfileForm
+from .models import Profile,User,Image
 
 # Create your views here.
 def welcome(request):
     current_user = request.user
-    user = User.objects.get(id = current_user.id)
-    profile=Profile.filter_profile_by_id(user.id)
-    return render(request,'index.html',{'profile':profile})
+    posts = Image.objects.all()
+    print(posts)
+    try:
+        user = User.objects.get(username = current_user.username)
+        users = User.objects.exclude(username=current_user.username).exclude(is_superuser=True)
+    except:
+        user = None
+        users = None
+    context = {
+        'posts':posts,
+        'user':user,
+        'users':users,     
+        }
+
+    return render(request,'index.html',context)
 
 def dm(request):
     return render(request,'dm.html')
 
 def image_upload(request):
-    return render(request,'image_upload.html')
+    current_user = request.user
+    if request.method == 'POST':
+        form = UploadImageModelForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.instance.user = current_user
+            form.save()
+            return redirect('/')
+    else:
+        form = UploadImageModelForm()
+    return render(request,'image_upload.html',{'form':form})
 
 def explore(request):
     return render(request,'explore.html')
