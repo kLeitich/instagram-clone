@@ -5,10 +5,10 @@ from django.contrib.auth.models import User
 # Create your tests here.
 class TestImage(TestCase):
     def setUp(self):
-        self.profile_test = Profile(name='joy', user=User(username='joy'))
+        self.profile_test = Profile(name='kleitich', user=User(username='kleitich'))
         self.profile_test.save()
 
-        self.image_test = Image(image='pic.png', name='test', caption='default test', user=self.profile_test)
+        self.image_test = Image(image='pic.png', caption='default test', user=self.profile_test)
 
     def test_instance(self):
         self.assertTrue(isinstance(self.image_test, Image))
